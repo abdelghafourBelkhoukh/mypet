@@ -13,15 +13,22 @@ public class Announcement {
     @Id @GeneratedValue
     private Long id;
     private String title;
-    private String NDJ;
+    private Integer NDJ;
     private String description;
     private String date;
+    @Column(name = "person_id")
+    private long person_id;
+
+    @Column(name = "animal_id")
+    private long animal_id;
 
     @OneToOne
+    @JoinColumn(name = "person_id", insertable = false, updatable = false)
     private Person person;
 
     //relation one to one with animal table
     @OneToOne
+    @JoinColumn(name = "animal_id", insertable = false, updatable = false)
     private Animal animal;
 
     @OneToMany(mappedBy = "imageAnnouncement")
