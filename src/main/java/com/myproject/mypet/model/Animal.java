@@ -1,5 +1,7 @@
 package com.myproject.mypet.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -16,6 +18,7 @@ public class Animal {
     private String image;
 
     @OneToOne(mappedBy = "animal")
+
     private Announcement animalAnnouncement;
 
     public Animal() {

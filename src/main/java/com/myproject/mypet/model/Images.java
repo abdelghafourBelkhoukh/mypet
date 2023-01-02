@@ -1,6 +1,8 @@
 package com.myproject.mypet.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import org.hibernate.mapping.PrimaryKey;
 
@@ -8,12 +10,16 @@ import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "image_announcement_id")
 @IdClass(ImagesPK.class)
 public class Images {
 
     @Id @GeneratedValue
     private Long id;
     @Id
+    @Column(name = "image_announcement_id")
     private long image_announcement_id;
 
     private String image;
@@ -47,7 +53,21 @@ public class Images {
         this.image = image;
     }
 
+    public long getImage_announcement_id() {
+        return image_announcement_id;
+    }
 
+    public void setImage_announcement_id(long image_announcement_id) {
+        this.image_announcement_id = image_announcement_id;
+    }
+
+    public Announcement getImageAnnouncement() {
+        return imageAnnouncement;
+    }
+
+    public void setImageAnnouncement(Announcement imageAnnouncement) {
+        this.imageAnnouncement = imageAnnouncement;
+    }
 }
 
 class ImagesPK implements Serializable {
