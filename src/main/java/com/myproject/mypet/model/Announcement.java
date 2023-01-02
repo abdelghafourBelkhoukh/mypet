@@ -1,6 +1,8 @@
 package com.myproject.mypet.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -9,6 +11,9 @@ import java.util.List;
 
 @Entity
 @Data
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "images")
 public class Announcement {
     @Id @GeneratedValue
     private Long id;
@@ -29,6 +34,7 @@ public class Announcement {
     //relation one to one with animal table
     @OneToOne
     @JoinColumn(name = "animal_id", insertable = false, updatable = false)
+
     private Animal animal;
 
     @OneToMany(mappedBy = "imageAnnouncement")
