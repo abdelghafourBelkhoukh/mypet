@@ -1,6 +1,7 @@
 package com.myproject.mypet.service;
 
 import com.myproject.mypet.model.Animal;
+import com.myproject.mypet.model.Announcement;
 import com.myproject.mypet.repo.AnimalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

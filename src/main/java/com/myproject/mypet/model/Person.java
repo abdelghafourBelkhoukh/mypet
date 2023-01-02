@@ -3,6 +3,7 @@ package com.myproject.mypet.model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 
 import java.util.Objects;
 
@@ -18,6 +19,9 @@ public class Person {
     private String address;
     private String city;
     private String nombreDA;
+
+    @OneToOne(mappedBy = "person")
+    private Announcement announcement;
 
     public Person() {
 
