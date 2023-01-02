@@ -31,12 +31,6 @@ public class Animalcontroller {
         return new ResponseEntity<>(animal, HttpStatus.OK);
     }
 
-//    @GetMapping("/find/{name}")
-//    public ResponseEntity<Animal> findAnimalByName(@PathVariable("name") String name) {
-//        Animal animal = animalService.findAnimalByName(name);
-//        return new ResponseEntity<>(animal, HttpStatus.OK);
-//    }
-
     @PostMapping("/add")
     public ResponseEntity<Animal> addAnimal(@RequestBody Animal animal) {
         Animal newAnimal = animalService.addAnimal(animal);
