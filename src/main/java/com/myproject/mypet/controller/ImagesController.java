@@ -17,7 +17,7 @@ public class ImagesController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> deleteImagesByAnnouncementId(@PathVariable Long id) {
+    public ResponseEntity<?> deleteImagesByAnnouncementId(@PathVariable("id") Long id) {
         imagesService.deleteImagesByAnnouncementId(id);
         return ResponseEntity.ok().build();
     }
@@ -28,12 +28,12 @@ public class ImagesController {
     }
 
     @PutMapping("/update")
-    public ResponseEntity<Images> updateImages(Images images) {
+    public ResponseEntity<Images> updateImages(@RequestBody Images images) {
         return new ResponseEntity(imagesService.updateImages(images), HttpStatus.OK);
     }
 
     @GetMapping("/find/{id}")
-    public ResponseEntity<Images> findImagesById(@PathVariable Long id) {
+    public ResponseEntity<Images> findImagesById(@PathVariable("id") Long id) {
         return new ResponseEntity(imagesService.findImagesById(id), HttpStatus.OK);
     }
 

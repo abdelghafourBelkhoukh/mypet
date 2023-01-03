@@ -26,7 +26,7 @@ public class AnnouncementController {
     }
 
     @GetMapping("/find/{id}")
-    public ResponseEntity<Announcement> getAnnouncementById(Long id) {
+    public ResponseEntity<Announcement> getAnnouncementById(@PathVariable("id") Long id) {
         Announcement announcement = announcementService.findAnnouncementById(id);
         return new ResponseEntity<>(announcement, HttpStatus.OK);
     }
@@ -38,7 +38,7 @@ public class AnnouncementController {
     }
 
     @PutMapping("/update")
-    public ResponseEntity<Announcement> updateAnnouncement(Announcement announcement) {
+    public ResponseEntity<Announcement> updateAnnouncement(@RequestBody Announcement announcement) {
         Announcement updateAnnouncement = announcementService.updateAnnouncement(announcement);
         return new ResponseEntity<>(updateAnnouncement, HttpStatus.OK);
     }
