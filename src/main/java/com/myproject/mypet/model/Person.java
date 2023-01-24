@@ -19,6 +19,7 @@ public class Person {
     private String address;
     private String city;
     private String nombreDA;
+    private String password;
 
     @OneToOne(mappedBy = "person")
     private Announcement announcement;
@@ -27,7 +28,7 @@ public class Person {
 
     }
 
-    public Person(Long id, String firstName, String lastName, String email, String phone, String address, String city, String nombreDA) {
+    public Person(Long id, String firstName, String lastName, String email, String phone, String address, String city, String nombreDA, String password) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -36,6 +37,7 @@ public class Person {
         this.address = address;
         this.city = city;
         this.nombreDA = nombreDA;
+        this.password = password;
     }
 
 
@@ -103,6 +105,14 @@ public class Person {
         this.nombreDA = nombreDA;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -146,4 +156,5 @@ public class Person {
                 ", nombreDA='" + nombreDA + '\'' +
                 '}';
     }
+
 }

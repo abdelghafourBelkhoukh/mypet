@@ -1,0 +1,62 @@
+<app-header></app-header>
+<div class="flex items-center justify-center min-h-screen bg-gray-100 py-10">
+  <div class="px-8 py-6  text-left bg-white shadow-lg w-2/5">
+    <div class="flex justify-center">
+      <img class="w-28" src="assets/images/logoMyPet.png">
+    </div>
+    <h3 class="text-2xl font-bold text-center">Create your account</h3>
+    <form action="">
+      <div class="mt-4">
+        <div class="mt-4">
+          <label class="block">First Name</label>
+          <input [(ngModel)]="person.firstName" type="text" placeholder="firstName" name="firstName"
+                 class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600">
+        </div>
+        <div class="mt-4">
+          <label class="block">Last Name</label>
+          <input [(ngModel)]="person.lastName" type="text" placeholder="lastName" name="lastName"
+                 class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600">
+        </div>
+        <div class="mt-4">
+          <label class="block">Email</label>
+          <input [(ngModel)]="person.email" type="email" placeholder="email" name="email"
+                 class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600">
+        </div>
+        <div class="mt-4">
+          <label class="block">Phone</label>
+          <input [(ngModel)]="person.phone" type="text" placeholder="phone" name="phone"
+                 class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600">
+        </div>
+        address
+        <div class="mt-4">
+          <label class="block">Address</label>
+          <input [(ngModel)]="person.address" type="text" placeholder="address" name="address"
+                 class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600">
+        </div>
+        <div class="mt-4">
+          <label class="block">City</label>
+          <input [(ngModel)]="person.city" type="text" placeholder="city"   name="city"
+                 class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600">
+        </div>
+        <div class="mt-4">
+          <label class="block">NombreDA</label>
+          <input [(ngModel)]="person.nombreDA" type="text" placeholder="nombreDA" name="nombreDA"
+                 class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600">
+        </div>
+        <div class="mt-4">
+          <label class="block">Password</label>
+          <input [(ngModel)]="person.password" type="password" placeholder="password" name="password"
+                 class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600">
+        </div>
+
+        <div class="flex items-baseline justify-between">
+          <button class="px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg hover:bg-blue-900" type="submit" (click)="createPerson()">Create
+            account
+          </button>
+          <a href="#" class="text-sm text-blue-600 hover:underline">Forgot password?</a>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<app-footer></app-footer>

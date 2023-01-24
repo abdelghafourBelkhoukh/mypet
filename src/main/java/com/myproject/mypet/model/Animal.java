@@ -10,26 +10,33 @@ import jakarta.persistence.OneToOne;
 import java.util.Objects;
 
 @Entity
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 public class Animal {
     @Id @GeneratedValue private Long id;
+    private String name;
     private String type;
     private String age;
     private String description;
     private String image;
+    private Long person_id;
 
     @OneToOne(mappedBy = "animal")
-
     private Announcement animalAnnouncement;
 
     public Animal() {
     }
 
-    public Animal(Long id, String type, String age,String description, String image) {
+    public Animal(Long id, String type, String age,String description, String image, String name, Long person_id) {
         this.id = id;
         this.type = type;
         this.age = age;
         this.description = description;
         this.image = image;
+        this.name = name;
+        this.person_id = person_id;
+
     }
 
     public String getImage() {
@@ -76,6 +83,22 @@ public class Animal {
         this.description = description;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Long getPerson_id() {
+        return person_id;
+    }
+
+    public void setPerson_id(Long person_id) {
+        this.person_id = person_id;
+    }
+
 
     @Override
     public boolean equals(Object o) {
@@ -87,6 +110,8 @@ public class Animal {
         if (!Objects.equals(id, animal.id)) return false;
         if (!Objects.equals(type, animal.type)) return false;
         if (!Objects.equals(age, animal.age)) return false;
+        if (!Objects.equals(person_id, animal.person_id)) return false;
+        if (!Objects.equals(name, animal.name)) return false;
         return Objects.equals(description, animal.description);
     }
 
@@ -95,6 +120,8 @@ public class Animal {
         int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (type != null ? type.hashCode() : 0);
         result = 31 * result + (age != null ? age.hashCode() : 0);
+        result = 31 * result + (person_id != null ? person_id.hashCode() : 0);
+        result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (description != null ? description.hashCode() : 0);
         return result;
     }
@@ -103,6 +130,7 @@ public class Animal {
     public String toString() {
         return "Animal{" +
                 "id=" + id +
+                "name=" + name + '\'' +
                 ", type='" + type + '\'' +
                 ", age='" + age + '\'' +
                 ", description='" + description + '\'' +

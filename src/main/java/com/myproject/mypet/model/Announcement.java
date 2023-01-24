@@ -31,7 +31,6 @@ public class Announcement {
     @JoinColumn(name = "person_id", insertable = false, updatable = false)
     private Person person;
 
-    //relation one to one with animal table
     @OneToOne
     @JoinColumn(name = "animal_id", insertable = false, updatable = false)
 
@@ -40,6 +39,9 @@ public class Announcement {
     @OneToMany(mappedBy = "imageAnnouncement")
     private List<Images> images;
 
+
+    @OneToMany(mappedBy = "announcement")
+    private List<Comment> comments;
 
 
 }

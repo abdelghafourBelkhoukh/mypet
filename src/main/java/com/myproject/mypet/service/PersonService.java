@@ -3,6 +3,7 @@ package com.myproject.mypet.service;
 import com.myproject.mypet.model.Person;
 import com.myproject.mypet.repo.PersonResository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -38,5 +39,11 @@ public class PersonService {
 
     public void deletePerson(Long id) {
         personResository.deleteById(id);
+    }
+
+    public Person findUserByEmail(String email) {
+        return personResository.findPersonByEmail(email)
+                .orElseThrow();
+
     }
 }

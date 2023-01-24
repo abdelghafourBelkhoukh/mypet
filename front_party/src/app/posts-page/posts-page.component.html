@@ -1,0 +1,165 @@
+<!--add announcement-->
+<div *ngIf="authService.localToken">
+<div class="flex justify-end px-10">
+  <a (click)="openPostPopUp()" class="btn border-0 bg-orange-600 hover:bg-orange-400 my-6">Add Announcement</a>
+</div>
+<div *ngIf="popUpAnnouncement"  class="bg-gray-600 bg-opacity-40 w-full h-full fixed inset-0 flex justify-center items-center">
+  <div class="modal-box px-14 overflow-y-hidden">
+    <div class="flex justify-end">
+      <a (click)="openPostPopUp()" class="btn border-0 bg-black text-white my-6 rounded-full">X</a>
+    </div>
+    <form>
+      <h1 class=" font-medium leading-tight text-xl mt-0.5 mb-2 text-gray-600 text-center">Create Announcement</h1>
+      <div class="relative z-0 mb-6 mt-10 w-full group">
+        <input [(ngModel)]="announcement.title" type="text" name="title" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required>
+        <label class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Title:</label>
+      </div>
+      <div class="relative z-0 mb-6 w-full group">
+        <input [(ngModel)]="announcement.description" type="text" name="description" id="description1" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required>
+        <label for="description1" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Description:</label>
+      </div>
+      <div class="relative z-0 mb-6 w-full group">
+        <select [(ngModel)]="announcement.animal_id" name="animal_id" id="animal_id" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required>
+          <option value="" selected>Select Animal</option>
+          <option *ngFor="let animal of animals" [value]="animal.id">{{animal.name}}</option>
+        </select>
+        <label for="animal_id" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Animal:</label>
+      </div>
+      <div class="w-full flex justify-end  py-7">
+        <input class=" inline-block px-6 py-2.5 bg-gray-800 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-gray-900 hover:shadow-lg focus:bg-gray-900 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-900 active:shadow-lg transition duration-150 ease-in-out" type="submit" value="Create Announcement" (click)="createAnnouncement()">
+      </div>
+    </form>
+  </div>
+</div>
+
+
+<!--add animal-->
+
+<div class="flex justify-end px-10">
+  <a (click)="openAnimalPopUp()" class="btn border-0 bg-orange-600 hover:bg-orange-400 my-6">Add Animal</a>
+</div>
+<div *ngIf="popUpAnimal" class="bg-gray-600 bg-opacity-40 w-full h-full fixed inset-0 flex justify-center items-center" >
+  <div class="modal-box px-14 overflow-y-hidden">
+    <div class="flex justify-end">
+      <a (click)="openAnimalPopUp()" class="btn border-0 bg-black text-white my-6 rounded-full">X</a>
+    </div>
+    <form>
+      <h1 class=" font-medium leading-tight text-xl mt-0.5 mb-2 text-gray-600 text-center">Create Animal</h1>
+      <div class="relative z-0 mb-6 mt-10 w-full group">
+        <input [(ngModel)]="animal.name" type="text" name="animalName" id="animalName2" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required>
+        <label for="animalName2" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Animal Name:</label>
+      </div>
+      <div class="relative z-0 mb-6 w-full group">
+        <input [(ngModel)]="animal.age" type="text" name="animalAge" id="animalAge2" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required>
+        <label for="animalAge2" class="peer-focus font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Animal Age:</label>
+      </div>
+      <div class="relative z-0 mb-6 w-full group">
+        <input [(ngModel)]="animal.type" type="text" name="animalType" id="animalType2" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required>
+        <label for="animalType2" class="peer-focus font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Animal Type:</label>
+      </div>
+      <div class="relative z-0 mb-6 w-full group">
+        <input [(ngModel)]="animal.image" type="file" name="animalImage" id="animalImage2" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" (change)="onFileSelected($event)" placeholder=" " required>
+        <label for="animalImage2" class="peer-focus font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Animal Image:</label>
+      </div>
+      <div class="w-full flex justify-end  py-7">
+        <input class=" inline-block px-6 py-2.5 bg-gray-800 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-gray-900 hover:shadow-lg focus:bg-gray-900 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-900 active:shadow-lg transition duration-150 ease-in-out" type="submit" value="Create Animal" (click)="createAnimal()">
+      </div>
+    </form>
+  </div>
+</div>
+
+</div>
+
+
+
+<div class="min-w-full min-h-[85vh] flex flex-col justify-center items-center">
+  <div class="flex justify-center py-6 min-w-full" *ngFor="let post of posts">
+    <div class="rounded-lg bg-white shadow-lg w-2/3">
+      <div class="flex flex-col md:flex-row">
+        <img class=" w-full h-96 md:h-auto object-cover md:w-48 rounded-t-lg md:rounded-none md:rounded-l-lg" src="./assets/images/postImages/{{post.animal.image}}" alt="" />
+        <div class="p-6 flex flex-col justify-start">
+          <h5 class="text-gray-900 text-xl font-medium mb-2">{{post.title}}</h5>
+          <p class="text-gray-700 text-base mb-4">
+            {{post.description}}
+          </p>
+          <p class="text-gray-900 leading-none">{{post.person.firstName}} {{post.person.lastName}}</p>
+          <p class="text-gray-600 text-xs">{{post.date}}</p>
+        </div>
+      </div>
+      <section class="py-8 lg:py-16">
+        <div class="max-w-full mx-auto px-8">
+          <div class="flex justify-between items-center mb-6">
+            <h2 class="text-lg lg:text-2xl font-bold text-gray-900 dark:text-white">Discussion ({{post.comments.length}})</h2>
+          </div>
+          <form *ngIf="authService.localToken" class="mb-6">
+            <div  class="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+              <label for="comment" class="sr-only">Your comment</label>
+              <textarea [(ngModel)]="dataComment.comment" id="comment" name="comment" rows="6"
+                        class="px-0 w-full text-sm text-gray-900 border-0 focus:ring-0 focus:outline-none dark:text-white dark:placeholder-gray-400 dark:bg-gray-800"
+                        placeholder="Write a comment..." required></textarea>
+            </div>
+            <button type="submit" (click)="createComment(post.id)"
+                    class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-orange-600 rounded-lg focus:ring-4 focus:ring-orange-200 hover:bg-orange-700">
+              Post comment
+            </button>
+          </form>
+
+          <div *ngFor="let comment of post.comments"  class="p-6 text-base bg-white border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+            <footer class="flex justify-between items-center mb-2">
+              <div class="flex items-center">
+                <p class="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white"><img
+                  class="mr-2 w-6 h-6 rounded-full"
+                  src="https://flowbite.com/docs/images/people/profile-picture-4.jpg"
+                  alt="Helene Engels">{{post.person.firstName}} {{post.person.lastName}} </p>
+                <p class="text-sm text-gray-600 dark:text-gray-400"><time pubdate datetime="2022-06-23"
+                                                                          title="June 23rd, 2022">{{comment.date}}</time></p>
+              </div>
+              <button id="dropdownComment4Button" data-dropdown-toggle="dropdownComment4"
+                      class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-400 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:bg-gray-900 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                      type="button">
+                <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
+                     xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z">
+                  </path>
+                </svg>
+              </button>
+              <!-- Dropdown menu -->
+              <div id="dropdownComment4"
+                   class="hidden z-10 w-36 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
+                <ul class="py-1 text-sm text-gray-700 dark:text-gray-200"
+                    aria-labelledby="dropdownMenuIconHorizontalButton">
+                  <li>
+                    <a href="#"
+                       class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit</a>
+                  </li>
+                  <li>
+                    <a href="#"
+                       class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Remove</a>
+                  </li>
+                  <li>
+                    <a href="#"
+                       class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Report</a>
+                  </li>
+                </ul>
+              </div>
+            </footer>
+            <p class="text-gray-500 dark:text-gray-400">{{comment.comment}}</p>
+            <div class="flex items-center mt-4 space-x-4">
+              <button type="button"
+                      class="flex items-center text-sm text-gray-500 hover:underline dark:text-gray-400">
+                <svg aria-hidden="true" class="mr-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+                Reply
+              </button>
+            </div>
+          </div >
+        </div>
+      </section>
+    </div>
+
+  </div>
+
+</div>
+<app-footer></app-footer>
+<router-outlet></router-outlet>
+`
