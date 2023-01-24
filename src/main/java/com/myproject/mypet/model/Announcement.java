@@ -27,7 +27,7 @@ public class Announcement {
     @Column(name = "animal_id")
     private long animal_id;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "person_id", insertable = false, updatable = false)
     private Person person;
 

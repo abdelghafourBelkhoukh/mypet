@@ -1,10 +1,8 @@
 package com.myproject.mypet.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -21,8 +19,8 @@ public class Person {
     private String nombreDA;
     private String password;
 
-    @OneToOne(mappedBy = "person")
-    private Announcement announcement;
+    @OneToMany(mappedBy = "person")
+    private List<Announcement> announcement;
 
     public Person() {
 
